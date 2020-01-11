@@ -15,3 +15,9 @@ svg {
   width: 100px;
   */
 }
+
+.top {
+  background: green;
+  width: 500px;
+  height: 200px;
+}

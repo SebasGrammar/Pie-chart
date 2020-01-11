@@ -1,8 +1,10 @@
 const pieChart = document.querySelector(".pie-chart")
 const backgroundCircle = document.querySelector(".background-circle")
 
-pieChart.setAttribute("height", 5)
-pieChart.setAttribute("width", 5)
+let xy = 5
+
+pieChart.setAttribute("height", xy)
+pieChart.setAttribute("width", xy)
 
 let dimensions = "250px";
 
@@ -19,8 +21,6 @@ const cx = pieWidth / 2
 const cy = pieHeight / 2
 
 backgroundCircle.setAttribute("r", pieWidth / 2)
-
-
 backgroundCircle.setAttribute("cx", cx)
 backgroundCircle.setAttribute("cy", cy)
 
@@ -28,14 +28,13 @@ const radio = backgroundCircle.r.baseVal.value
 
 const sliceRadio = radio / 2
 
-console.log(2 * Math.PI * sliceRadio)
-
-// circumference = 2 * pi * r
+// console.log(2 * Math.PI * sliceRadio)
 
 const circumference = 2 * Math.PI * sliceRadio
 
-let data = [5, 5, 5, 5, 5]
-let value = data.reduce((acc, nxt) => acc + nxt) // TOTAL, addition of all numbers
+//let data = [5, 5, 5, 5, 5]
+let data = [300, 500, 100, 200, 200]
+let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
 
 let colors = ["#edf7fa", "#5f6caf", "#ffb677", "#ff8364", "#df8543"]
 
@@ -62,20 +61,23 @@ let degrees = -90;
 percentages.forEach((percentage, index) => {
 
     const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-
     Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
-
     slice.style.setProperty("transform-origin", "50%")
-
     slice.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
     degrees -= data[index] / value * 360
-
     slice.setAttribute("stroke-dasharray", setDashArray(percentage))
     slice.setAttribute("stroke", setColor(index))
-
-    slice.classList.add(`circle-${Math.round(percentage)}`)
+    //slice.classList.add(`circle-${Math.round(percentage)}`)
     pieChart.appendChild(slice)
 
 })
+
+let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+overlapping.classList.add("top")
+overlapping.setAttribute("fill", "#FFF")
+overlapping.setAttribute("r", 2)
+overlapping.setAttribute("cx", cx)
+overlapping.setAttribute("cy", cy)
+pieChart.appendChild(overlapping)
 
 console.log(pieChart)
