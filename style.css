@@ -1,0 +1,29 @@
+body {
+    text-align: center;
+  }
+  
+  svg {
+    border: 2px dashed #000;
+    height: 500px;
+    width: 500px;
+  }
+  
+  .first {
+    transform-origin: 50%;
+    /* 20 / 100 * 360 */
+    transform: rotate(-72deg)
+  }
+  
+  .second {
+    transform-origin: 50%;
+    transform: rotate(-252deg) /* CALCULATION PLUS PRIOR ELEMENT`S DEGREES */
+  }
+  
+  .third {
+    transform-origin: 50%;
+    /*transform: rotate(-90deg)*/
+    /* https://www.mathsisfun.com/data/pie-charts.html */
+    /* 30 / 100 * 360 */
+    /* percentage of slice / sum of all slices * 360 -> degreesof circle */
+    transform: rotate(-360deg) 
+  }
