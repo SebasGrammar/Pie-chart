@@ -11,12 +11,12 @@ body {
   .first {
     transform-origin: 50%;
     /* 20 / 100 * 360 */
-    transform: rotate(-72deg)
+    transform: rotate(-90deg)
   }
   
   .second {
     transform-origin: 50%;
-    transform: rotate(-252deg) /* CALCULATION PLUS PRIOR ELEMENT`S DEGREES */
+    transform: rotate(-198deg) /* CALCULATION PLUS PRIOR ELEMENT`S DEGREES */
   }
   
   .third {
@@ -25,5 +25,13 @@ body {
     /* https://www.mathsisfun.com/data/pie-charts.html */
     /* 30 / 100 * 360 */
     /* percentage of slice / sum of all slices * 360 -> degreesof circle */
-    transform: rotate(-360deg) 
+    transform: rotate(-234deg) 
+  }
+
+  .fourth {
+
+  } 
+
+  .fifth {
+
   }
