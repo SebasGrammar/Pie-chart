@@ -1,7 +1,9 @@
 const pieChart = document.querySelector(".pie-chart")
 
 
-let data = [105, 20, 32, 70, 43]
+//let data = [105, 20, 32, 70, 43]
+
+let data = [20, 20, 20, 20, 20]
 
 let colors = ["red", "blue", "orange", "gray", "brown"]
 
@@ -44,12 +46,12 @@ function setColor(index) {
 }
 
 //let degrees = -90;
-let degrees;
+let degrees = -90
 
 percentages.forEach((percentage, index) => {
     //const slice =  document.createElement("circle")
 
-    degrees = percentage / 100 * 360
+    
     const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
     Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
@@ -60,7 +62,9 @@ percentages.forEach((percentage, index) => {
 
     // slice.style.setProperty("transform-origin", "50%")
     slice.style.setProperty("transform-origin", "50%")
-    slice.style.setProperty("transform", `rotate(${degrees}deg)`)
+    //slice.style.setProperty("transform", `rotate(${degrees}deg)`)
+    slice.style.setProperty("transform", `rotate(${-20 / 100 * 360 + degrees}deg)`)
+    degrees -= 20 / 100 * 360
      
     //slice.style.setProperty("transform", "rotate(-72deg)")
     slice.setAttribute("stroke-dasharray", setThis(percentage))
