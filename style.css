@@ -27,3 +27,10 @@ body {
     /* percentage of slice / sum of all slices * 360 -> degreesof circle */
     transform: rotate(-360deg) 
   }
+
+  .circle-33 {
+
+    transform-origin: 50%;
+    transform: rotate(360deg) 
+
+  }
