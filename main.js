@@ -3,7 +3,7 @@ const pieChart = document.querySelector(".pie-chart")
 
 //let data = [105, 20, 32, 70, 43]
 
-let data = [20, 20, 20, 20, 20]
+let data = [30, 10, 20, 20, 20]
 
 let colors = ["red", "blue", "orange", "gray", "brown"]
 
@@ -63,8 +63,8 @@ percentages.forEach((percentage, index) => {
     // slice.style.setProperty("transform-origin", "50%")
     slice.style.setProperty("transform-origin", "50%")
     //slice.style.setProperty("transform", `rotate(${degrees}deg)`)
-    slice.style.setProperty("transform", `rotate(${-20 / 100 * 360 + degrees}deg)`)
-    degrees -= 20 / 100 * 360
+    slice.style.setProperty("transform", `rotate(${-data[index] / 100 * 360 + degrees}deg)`)
+    degrees -= data[index] / 100 * 360
      
     //slice.style.setProperty("transform", "rotate(-72deg)")
     slice.setAttribute("stroke-dasharray", setThis(percentage))
