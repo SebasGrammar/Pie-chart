@@ -4,6 +4,10 @@ const backgroundCircle = document.querySelector(".background-circle")
 pieChart.setAttribute("height", 5)
 pieChart.setAttribute("width", 5)
 
+let dimensions = "100px";
+
+pieChart.style.setProperty("width", dimensions)
+pieChart.style.setProperty("height", dimensions)
 
 console.log(pieChart.width.baseVal.value)
 
@@ -33,7 +37,7 @@ const circumference = 2 * Math.PI * sliceRadio
 let data = [5, 5, 5, 5, 5]
 let value = data.reduce((acc, nxt) => acc + nxt) // TOTAL, addition of all numbers
 
-let colors = ["red", "blue", "orange", "gray", "pink"]
+let colors = ["#edf7fa", "#5f6caf", "#ffb677", "#ff8364", "#df8543"]
 
 let percentages = data.map(number => number * circumference / value)
 
