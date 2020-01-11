@@ -30,7 +30,8 @@ function setThis(percentage) {
 
 
 percentages.forEach(percentage => {
-    const slice =  document.createElement("circle")
+    //const slice =  document.createElement("circle")
+    const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
     Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
 
