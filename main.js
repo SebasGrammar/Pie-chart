@@ -3,7 +3,7 @@ const pieChart = document.querySelector(".pie-chart")
 
 //let data = [105, 20, 32, 70, 43]
 
-let data = [30, 10, 20, 20, 20]
+let data = [100, 10, 20, 20, 0]
 
 let colors = ["red", "blue", "orange", "gray", "brown"]
 
@@ -47,6 +47,8 @@ function setColor(index) {
 
 //let degrees = -90;
 let degrees = -90
+
+let value = data.reduce((acc, nxt) => acc + nxt)
 
 percentages.forEach((percentage, index) => {
     //const slice =  document.createElement("circle")
