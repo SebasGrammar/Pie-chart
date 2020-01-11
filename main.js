@@ -1,6 +1,25 @@
 const pieChart = document.querySelector(".pie-chart")
 const backgroundCircle = document.querySelector(".background-circle")
 
+pieChart.setAttribute("height", 5)
+pieChart.setAttribute("width", 5)
+
+
+console.log(pieChart.width.baseVal.value)
+
+const pieWidth = pieChart.width.baseVal.value;
+const pieHeight = pieChart.height.baseVal.value;
+pieChart.setAttribute("viewBox", `0 0 ${pieWidth} ${pieHeight}`)
+
+const cx = pieWidth / 2
+const cy = pieHeight / 2
+
+backgroundCircle.setAttribute("r", pieWidth / 2)
+
+
+backgroundCircle.setAttribute("cx", cx)
+backgroundCircle.setAttribute("cy", cy)
+
 const radio = backgroundCircle.r.baseVal.value
 
 const sliceRadio = radio / 2
@@ -14,14 +33,14 @@ const circumference = 2 * Math.PI * sliceRadio
 let data = [5, 5, 5, 5, 5]
 let value = data.reduce((acc, nxt) => acc + nxt) // TOTAL, addition of all numbers
 
-let colors = ["red", "blue", "orange", "gray", "brown"]
+let colors = ["red", "blue", "orange", "gray", "pink"]
 
 let percentages = data.map(number => number * circumference / value)
 
 let attributes = {
     r: sliceRadio,
-    cx: "10",
-    cy: "10",
+    cx: cx,
+    cy: cy,
     fill: "transparent",
     "stroke-width": radio,  
 }
@@ -54,3 +73,5 @@ percentages.forEach((percentage, index) => {
     pieChart.appendChild(slice)
 
 })
+
+console.log(pieChart)

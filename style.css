@@ -4,8 +4,8 @@ body {
   
   svg {
     border: 2px dashed #000;
-    height: 500px;
-    width: 500px;
+    height: 50px;
+    width: 50px;
   }
   
   .first {
