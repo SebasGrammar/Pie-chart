@@ -4,7 +4,7 @@ const backgroundCircle = document.querySelector(".background-circle")
 pieChart.setAttribute("height", 5)
 pieChart.setAttribute("width", 5)
 
-let dimensions = "100px";
+let dimensions = "250px";
 
 pieChart.style.setProperty("width", dimensions)
 pieChart.style.setProperty("height", dimensions)

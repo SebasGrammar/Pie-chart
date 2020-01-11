@@ -1,9 +1,17 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
 body {
   text-align: center;
 }
 
 svg {
-  background: #f0e3ff;
-  height: 250px;
-  width: 250px;
+  /*
+  background: ;
+  height: 100px;
+  width: 100px;
+  */
 }
