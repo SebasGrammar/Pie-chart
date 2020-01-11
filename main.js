@@ -43,14 +43,26 @@ function setColor(index) {
     return colors[index]
 }
 
+//let degrees = -90;
+let degrees;
+
 percentages.forEach((percentage, index) => {
     //const slice =  document.createElement("circle")
+
+    degrees = percentage / 100 * 360
     const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
     Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
 
+
+    /* 30 / 100 * 360 */
+    /* percentage of slice / sum of all slices * 360 -> degreesof circle */
+
     // slice.style.setProperty("transform-origin", "50%")
-    // slice.style.setProperty("transform", "rotate(-72deg)")
+    slice.style.setProperty("transform-origin", "50%")
+    slice.style.setProperty("transform", `rotate(${degrees}deg)`)
+     
+    //slice.style.setProperty("transform", "rotate(-72deg)")
     slice.setAttribute("stroke-dasharray", setThis(percentage))
     slice.setAttribute("stroke", setColor(index))
     /*
