@@ -1,22 +1,33 @@
 const pieChart = document.querySelector(".pie-chart")
+const backgroundCircle = document.querySelector(".background-circle")
+
+const radio = backgroundCircle.r.baseVal.value
+
+const sliceRadio = radio / 2
+
+console.log(2 * Math.PI * sliceRadio)
+
+// circumference = 2 * pi * r
+
+const circumference = 2 * Math.PI * sliceRadio
 
 let data = [5, 5, 5, 5, 5]
-let value = data.reduce((acc, nxt) => acc + nxt)
+let value = data.reduce((acc, nxt) => acc + nxt) // TOTAL, addition of all numbers
 
 let colors = ["red", "blue", "orange", "gray", "brown"]
 
-let percentages = data.map(number => number * 31.42 / value)
+let percentages = data.map(number => number * circumference / value)
 
 let attributes = {
-    r: "5",
+    r: sliceRadio,
     cx: "10",
     cy: "10",
     fill: "transparent",
-    "stroke-width": "10",  
+    "stroke-width": radio,  
 }
 
 function setDashArray(percentage) {
-    return `${percentage} 31.42`
+    return `${percentage} ${circumference}`
 }
 
 function setColor(index) {
