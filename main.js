@@ -7,6 +7,8 @@ const slicesNumber = document.querySelector(".slices-number")
 const inputContainer = document.querySelector(".input-container")
 const add = document.querySelector(".add")
 
+//const squares = document.querySelectorAll(".field");
+let squares;
 let fields = 0;
 
 function createFields() {
@@ -15,12 +17,21 @@ function createFields() {
     for (let i = 0; i < Number(slicesNumber.value); i ++) {
         //let field = document.createElement("div")
         let field = document.createElement("input")
+        field.placeholder = `field #${i + 1}`
         field.classList.add("field")
         inputContainer.appendChild(field)
     }
 
     //fields = 0
+    squares = document.querySelectorAll(".field")
+    
 }
+
+
+
+
+
+
 
 add.addEventListener("click", createFields)
 
@@ -53,9 +64,12 @@ const sliceRadio = radio / 2 // radio for each slice
 
 const circumference = 2 * Math.PI * sliceRadio
 
-let data = [234, 324, 884, 22, 134]
-let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
-let percentages = data.map(number => number * circumference / value)
+//let data = [234, 324, 884, 22, 134]
+let data = [];
+
+
+//let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
+//let percentages = data.map(number => number * circumference / value)
 
 let colors = ["#edf7fa", "#5f6caf", "#ffb677", "#ff8364", "#df8543"]
 
@@ -93,6 +107,16 @@ let degrees = -90;
 
 function generateChart() {
 
+    for (let square of squares) {
+        //console.log(square.value)
+        data.push(Number(square.value))
+    }
+
+    console.log(data)
+
+    let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
+    let percentages = data.map(number => number * circumference / value)
+
     percentages.forEach((percentage, index) => {
 
         const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
@@ -105,6 +129,9 @@ function generateChart() {
         SVG.appendChild(slice)
     
     })
+
+
+   
 }
 
 generateButton.addEventListener("click", generateChart)
