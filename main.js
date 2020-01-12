@@ -34,6 +34,7 @@ function createFields() {
 
 
 add.addEventListener("click", createFields)
+slicesNumber.addEventListener("input", createFields)
 
 console.log(generateButton)
 let dimensions = 5
@@ -139,17 +140,26 @@ function generateChart() {
     })
 
 
+    let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+    overlapping.classList.add("top")
+    overlapping.setAttribute("fill", "#FFF")
+    overlapping.setAttribute("r", 2)
+    overlapping.setAttribute("cx", cx)
+    overlapping.setAttribute("cy", cy)
+    SVG.appendChild(overlapping)
+
    
 }
 
 generateButton.addEventListener("click", generateChart)
 
-let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-overlapping.classList.add("top")
-overlapping.setAttribute("fill", "#FFF")
-overlapping.setAttribute("r", 2)
-overlapping.setAttribute("cx", cx)
-overlapping.setAttribute("cy", cy)
-SVG.appendChild(overlapping)
+
+// let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+// overlapping.classList.add("top")
+// overlapping.setAttribute("fill", "#FFF")
+// overlapping.setAttribute("r", 2)
+// overlapping.setAttribute("cx", cx)
+// overlapping.setAttribute("cy", cy)
+// SVG.appendChild(overlapping)
 
 console.log(SVG)

@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
+
 * {
   margin: 0;
   padding: 0;
@@ -6,6 +8,11 @@
 
 body {
   text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Open Sans', sans-serif;
 }
 
 svg {
@@ -19,8 +26,9 @@ svg {
 .input-container {
   background: red;
   width: 500px;
-  height: 250px;
+  height: ;
   display: flex;
+  flex-direction: column;
 }
 
 .top {
@@ -29,9 +37,25 @@ svg {
   height: 200px;
 }
 
+
+
+input {
+  background: #fff;
+  color: #000;
+  border-radius: 4px;
+  border: 1px solid #d1d1d1;
+  box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.2);
+  font-family: inherit;
+  font-size: 1em;
+  line-height: 1.20;
+  outline: none;
+  padding: 10px;
+}
+
 .field {
-  width: 50px;
-  height: 50px;
+  width: 100px;
+  height: 25px;
   background: ;
   margin: 5px;
+  text-align: center;
 }
