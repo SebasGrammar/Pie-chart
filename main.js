@@ -7,6 +7,15 @@ const slicesNumber = document.querySelector(".slices-number")
 const inputContainer = document.querySelector(".input-container")
 const add = document.querySelector(".add")
 
+const range = document.querySelector(".test")
+
+function handleUpdate(suffix = "") {
+    suffix = this.dataset.sizing;
+    document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
+}
+
+range.addEventListener("change", handleUpdate)
+
 //const squares = document.querySelectorAll(".field");
 let squares;
 let fields = 0;
@@ -27,25 +36,19 @@ function createFields() {
     
 }
 
-
-
-
-
-
-
 add.addEventListener("click", createFields)
 slicesNumber.addEventListener("input", createFields)
 
 console.log(generateButton)
 let dimensions = 5
-let size = "250px";
+//let size = "150px";
 
 SVG.setAttribute("height", dimensions)
 SVG.setAttribute("width", dimensions)
 
 
-SVG.style.setProperty("width", size)
-SVG.style.setProperty("height", size)
+//SVG.style.setProperty("width", size)
+//SVG.style.setProperty("height", size)
 
 const pieWidth = SVG.width.baseVal.value;
 const pieHeight = SVG.height.baseVal.value;
