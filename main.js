@@ -104,8 +104,15 @@ let degrees = -90;
 
 // })
 
+function generateRandomColor() {
+    return '#'+Math.floor(Math.random()*16777215).toString(16);
+    //return randomColor;
+    //random color will be freshly served
+}
 
 function generateChart() {
+
+    data.length = 0
 
     for (let square of squares) {
         //console.log(square.value)
@@ -125,7 +132,8 @@ function generateChart() {
         slice.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
         degrees -= data[index] / value * 360
         slice.setAttribute("stroke-dasharray", setDashArray(percentage))
-        slice.setAttribute("stroke", setColor(index))
+        //slice.setAttribute("stroke", setColor(index))
+        slice.setAttribute("stroke", generateRandomColor())
         SVG.appendChild(slice)
     
     })
