@@ -9,8 +9,18 @@ const add = document.querySelector(".add")
 
 const range = document.querySelector(".test")
 
-
 const labels = document.querySelector(".labels")
+
+
+const modal = document.querySelector(".modal")
+const closeModal = document.querySelector(".close-modal")
+const modalMessage = document.querySelector(".modal-message")
+
+function close() {
+    this.style.display = "none"
+}
+
+closeModal.addEventListener("click", close.bind(modal))
 
 function handleUpdate(suffix = "") {
     suffix = this.dataset.sizing;
@@ -28,9 +38,9 @@ function createFields() {
     inputContainer.innerHTML = ""
     labels.innerHTML = ""
     SVG.innerHTML = ""
-    
 
-    for (let i = 0; i < Number(slicesNumber.value); i ++) {
+
+    for (let i = 0; i < Number(slicesNumber.value); i++) {
         //let field = document.createElement("div")
         let fieldContainer = document.createElement("div")
         fieldContainer.classList.add("field-container")
@@ -54,7 +64,7 @@ function createFields() {
     //fields = 0
     squares = document.querySelectorAll(".field")
     names = document.querySelectorAll(".label-name")
-    
+
 }
 
 add.addEventListener("click", createFields)
@@ -103,7 +113,7 @@ let attributes = {
     cx: cx,
     cy: cy,
     fill: "transparent",
-    "stroke-width": radio,  
+    "stroke-width": radio,
 }
 
 function setDashArray(percentage) {
@@ -130,65 +140,94 @@ let degrees = -90;
 // })
 
 function generateRandomColor() {
-    return '#'+Math.floor(Math.random()*16777215).toString(16);
-    //return randomColor;
-    //random color will be freshly served
+
+    return '#' + Math.floor(Math.random() * 16777215).toString(16);
+    //return `#${Math.floor(Math.random()*16777215).toString(16)}`
+
 }
+
+let greenLight;
 
 function generateChart() {
 
-    data.length = 0
-    labels.innerHTML = ""
+
 
     for (let square of squares) {
-        //console.log(square.value)
-        data.push(Number(square.value))
+
+        if (!square.value) {
+            greenLight = false
+            break
+
+        } else {
+
+            greenLight = true
+        }
+
     }
 
-    console.log(data)
+    if (greenLight) {
 
-    let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
-    let percentages = data.map(number => number * circumference / value)
+        data.length = 0
+        labels.innerHTML = ""
 
-    percentages.forEach((percentage, index) => {
+        for (let square of squares) {
+            //console.log(square.value)
+            data.push(Number(square.value))
+        }
 
-        const color = generateRandomColor()
+        console.log(data)
 
-        const percent = data[index] / value * 100 
+        let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
+        let percentages = data.map(number => number * circumference / value)
 
-        const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+        percentages.forEach((percentage, index) => {
 
-        const label = document.createElement("div")
-        label.classList.add("label")
+            const color = generateRandomColor()
 
-        Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
-        slice.style.setProperty("transform-origin", "50%")
-        slice.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
-        degrees -= data[index] / value * 360
-        slice.setAttribute("stroke-dasharray", setDashArray(percentage))
-        //slice.setAttribute("stroke", setColor(index))
-        slice.setAttribute("stroke", color)
+            const percent = data[index] / value * 100
 
-        label.style.setProperty("background", color)
+            const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
 
-        //label.textContent = `${data[index]} -> ${Math.round(percent)}%`;
-        label.textContent = `${names[index].value} ${Math.round(percent)}%`
+            const label = document.createElement("div")
+            label.classList.add("label")
 
-        labels.appendChild(label)
-        SVG.appendChild(slice)
-    
-    })
+            Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
+            slice.style.setProperty("transform-origin", "50%")
+            slice.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
+            degrees -= data[index] / value * 360
+            slice.setAttribute("stroke-dasharray", setDashArray(percentage))
+            //slice.setAttribute("stroke", setColor(index))
+            slice.setAttribute("stroke", color)
+
+            label.style.setProperty("background", color)
+
+            //label.textContent = `${data[index]} -> ${Math.round(percent)}%`;
+            label.textContent = `${names[index].value} ${Math.round(percent)}%`
+
+            labels.appendChild(label)
+            SVG.appendChild(slice)
+
+        })
 
 
-    // let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-    // overlapping.classList.add("top")
-    // overlapping.setAttribute("fill", "#FFF")
-    // overlapping.setAttribute("r", 2)
-    // overlapping.setAttribute("cx", cx)
-    // overlapping.setAttribute("cy", cy)
-    // SVG.appendChild(overlapping)
-
-   
+        // let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+        // overlapping.classList.add("top")
+        // overlapping.setAttribute("fill", "#FFF")
+        // overlapping.setAttribute("r", 2)
+        // overlapping.setAttribute("cx", cx)
+        // overlapping.setAttribute("cy", cy)
+        // SVG.appendChild(overlapping)
+    } else {
+        let emptyFields = 0;
+        for (let square of squares) {
+            if (!square.value) {
+                emptyFields ++
+            }
+        }
+        //alert("There are empty fields")
+        emptyFields < 2 ? modalMessage.textContent = `There is ${emptyFields} empty field.` : modalMessage.textContent = `There are ${emptyFields} empty fields.`
+        modal.style.display = "block"
+    }
 }
 
 generateButton.addEventListener("click", generateChart)

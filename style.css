@@ -30,6 +30,7 @@ body {
   font-family: 'Open Sans', sans-serif;
   background: #F5F5F5;
   border: 1px solid #d1d1d1;
+  position: relative;
 }
 
 h1 {
@@ -129,4 +130,11 @@ button {
 
 .add {
   display: none;
+}
+
+.modal {
+  background: red;
+  padding: 5px 60px;
+  position: absolute;
+  display: none
 }
