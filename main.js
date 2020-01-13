@@ -9,6 +9,9 @@ const add = document.querySelector(".add")
 
 const range = document.querySelector(".test")
 
+
+const labels = document.querySelector(".labels")
+
 function handleUpdate(suffix = "") {
     suffix = this.dataset.sizing;
     document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
@@ -22,6 +25,7 @@ let fields = 0;
 
 function createFields() {
     inputContainer.innerHTML = ""
+    
 
     for (let i = 0; i < Number(slicesNumber.value); i ++) {
         //let field = document.createElement("div")
@@ -117,6 +121,7 @@ function generateRandomColor() {
 function generateChart() {
 
     data.length = 0
+    labels.innerHTML = ""
 
     for (let square of squares) {
         //console.log(square.value)
@@ -130,26 +135,40 @@ function generateChart() {
 
     percentages.forEach((percentage, index) => {
 
+        const color = generateRandomColor()
+
+        const percent = data[index] / value * 100 
+
         const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
+        const label = document.createElement("div")
+        label.classList.add("label")
+
         Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
         slice.style.setProperty("transform-origin", "50%")
         slice.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
         degrees -= data[index] / value * 360
         slice.setAttribute("stroke-dasharray", setDashArray(percentage))
         //slice.setAttribute("stroke", setColor(index))
-        slice.setAttribute("stroke", generateRandomColor())
+        slice.setAttribute("stroke", color)
+
+        label.style.setProperty("background", color)
+
+        label.textContent = `${data[index]} -> ${Math.round(percent)}%`;
+
+        labels.appendChild(label)
         SVG.appendChild(slice)
     
     })
 
 
-    let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-    overlapping.classList.add("top")
-    overlapping.setAttribute("fill", "#FFF")
-    overlapping.setAttribute("r", 2)
-    overlapping.setAttribute("cx", cx)
-    overlapping.setAttribute("cy", cy)
-    SVG.appendChild(overlapping)
+    // let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+    // overlapping.classList.add("top")
+    // overlapping.setAttribute("fill", "#FFF")
+    // overlapping.setAttribute("r", 2)
+    // overlapping.setAttribute("cx", cx)
+    // overlapping.setAttribute("cy", cy)
+    // SVG.appendChild(overlapping)
 
    
 }
