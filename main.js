@@ -222,10 +222,13 @@ function generateChart() {
         for (let square of squares) {
             if (!square.value) {
                 emptyFields ++
+                
             }
         }
         //alert("There are empty fields")
+        //let verb;
         emptyFields < 2 ? modalMessage.textContent = `There is ${emptyFields} empty field.` : modalMessage.textContent = `There are ${emptyFields} empty fields.`
+        //modalMessage.textContent = "There ${verb} ${}"
         modal.style.display = "block"
     }
 }
