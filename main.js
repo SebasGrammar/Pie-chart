@@ -25,6 +25,8 @@ let fields = 0;
 
 function createFields() {
     inputContainer.innerHTML = ""
+    labels.innerHTML = ""
+    SVG.innerHTML = ""
     
 
     for (let i = 0; i < Number(slicesNumber.value); i ++) {

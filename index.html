@@ -10,30 +10,35 @@
 </head>
 
 <body>
+    <div class="wrapper">
+        <h1>Number of sectors</h1>
+        <input class="slices-number"></input>
+        <button class="add">Add</button>
 
-    <h1>Number of sectors</h1>
-    <input class="slices-number"></input>
-    <button class="add">Add</button>
+        <div class="input-container">
 
-    <div class="input-container">
+        </div>
 
+
+
+        <label>Dimensions</label>
+        <input class="test" name="size" type="range" min="100" max="500" value="500" data-sizing="px"
+            placeholder="enter your value here" class="input"></input>
+
+        <button class="generate-button">Generate</button>
     </div>
+    <div class="chart-display">
+        <div class="labels">
 
-    <div class="labels">
-        
-    </div>
+        </div>
+        <svg class="pie-chart">
 
-    <label>Dimensions</label>
-    <!-- <input type="text" placeholder="enter your value here" class="input"></input> -->
-    <input class="test" name="size" type="range" min="100" max="500" value="500" data-sizing="px" placeholder="enter your value here" class="input"></input>
-    <button class="generate-button">Generate</button>
 
-    <svg class="pie-chart">
-        <circle class="background-circle" fill="transparent" />
+            <circle class="background-circle" fill="transparent" />
 
-  
 
-        <!--
+
+            <!--
     
         <circle class="first" r="5" cx="10" cy="10" fill="transparent" stroke="tomato" stroke-width="10"
             stroke-dasharray="calc(20 * 31.42 / 100) 31.42" />
@@ -47,7 +52,8 @@
 
         -->
 
-    </svg>
+        </svg>
+    </div>
 
 
     <script src="main.js"></script>
