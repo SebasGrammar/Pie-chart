@@ -10,15 +10,30 @@
   box-sizing: border-box;
 }
 
+body, html {
+  height: 100%;
+  width: 100%;
+}
+
 body {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+}
+
+.app {
   text-align: center;
   display: flex;
-
+  align-items: center;
   justify-content: center;
   font-family: 'Open Sans', sans-serif;
+  background: #F5F5F5;
+  border: 1px solid #d1d1d1;
 }
+
 h1 {
-  background: green;
+  /* background: green; */
 }
 
 .wrapper {
@@ -26,8 +41,9 @@ h1 {
   flex-direction: column;
   align-items: center;
 
-  background: red;
+  /* background: red; */
   padding: 10px;
+  border-right: 1px solid #ECECEC;
 }
 
 .chart-display {
@@ -35,7 +51,7 @@ h1 {
   flex-direction: column;
   align-items: center;
  
-  background: blue;
+  /* background: blue; */
   padding: 10px;
 }
 
@@ -50,7 +66,7 @@ svg {
 }
 
 .input-container {
-  background: red;
+  /* background: red; */
   width: 500px;
   height: ;
   display: flex;
@@ -59,7 +75,7 @@ svg {
 }
 
 .top {
-  background: green;
+  /* background: green; */
   width: 500px;
   height: 200px;
 }
@@ -76,12 +92,16 @@ input {
   font-size: 1em;
   line-height: 1.20;
   outline: none;
-  padding: 10px;
+  padding: 5px;
+  margin: 5px;
+}
+
+input:focus {
+  border: 1px solid red;
 }
 
 .field {
   width: 100px;
-  height: 25px;
   background: ;
   margin: 5px;
   text-align: center;
@@ -98,5 +118,15 @@ input {
 
 .field-container {
   display: flex;
-  background: green;
+  /* background: green; */
+}
+
+button {
+  padding: 10px;
+  border-radius: 3px;
+  border: 1px solid gray;
+}
+
+.add {
+  display: none;
 }
