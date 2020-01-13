@@ -131,25 +131,55 @@ function generateChart() {
     percentages.forEach((percentage, index) => {
 
         const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
+
         Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
+
+        
+
         slice.style.setProperty("transform-origin", "50%")
         slice.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
         degrees -= data[index] / value * 360
         slice.setAttribute("stroke-dasharray", setDashArray(percentage))
+       
         //slice.setAttribute("stroke", setColor(index))
         slice.setAttribute("stroke", generateRandomColor())
+
+        const number = document.createElementNS("http://www.w3.org/2000/svg", 'text');
+        number.setAttributeNS(null, 'x', cx - 1);
+        number.setAttributeNS(null, 'y', cy - 1);
+        number.setAttributeNS(null, 'text-anchor', '');
+        number.setAttributeNS(null, 'stroke', 'white');
+        number.setAttributeNS(null, "fill", "black")
+        number.setAttributeNS(null, 'stroke-width', '1px');
+        number.setAttributeNS(null, "font-size", "5")
+        number.setAttributeNS(null, "stroke-width", "1px")
+        number.style.setProperty("transform-origin", "50%")
+        number.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
+        number.textContent = '2';
+
+
+
+        //SVG.appendChild(text)
+        //slice.appendChild(text)
+
+
+
+        
         SVG.appendChild(slice)
+        SVG.appendChild(number)
+
+     
     
     })
 
 
-    let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-    overlapping.classList.add("top")
-    overlapping.setAttribute("fill", "#FFF")
-    overlapping.setAttribute("r", 2)
-    overlapping.setAttribute("cx", cx)
-    overlapping.setAttribute("cy", cy)
-    SVG.appendChild(overlapping)
+    // let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+    // overlapping.classList.add("top")
+    // overlapping.setAttribute("fill", "#FFF")
+    // overlapping.setAttribute("r", 2)
+    // overlapping.setAttribute("cx", cx)
+    // overlapping.setAttribute("cy", cy)
+    // SVG.appendChild(overlapping)
 
    
 }
