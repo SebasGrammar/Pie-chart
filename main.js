@@ -21,6 +21,7 @@ range.addEventListener("change", handleUpdate)
 
 //const squares = document.querySelectorAll(".field");
 let squares;
+let names;
 let fields = 0;
 
 function createFields() {
@@ -31,14 +32,28 @@ function createFields() {
 
     for (let i = 0; i < Number(slicesNumber.value); i ++) {
         //let field = document.createElement("div")
+        let fieldContainer = document.createElement("div")
+        fieldContainer.classList.add("field-container")
+
+
+        let label = document.createElement("input")
+        label.placeholder = "label name"
+        label.classList.add("label-name")
+
+
         let field = document.createElement("input")
         field.placeholder = `field #${i + 1}`
         field.classList.add("field")
-        inputContainer.appendChild(field)
+
+
+        fieldContainer.appendChild(label)
+        fieldContainer.appendChild(field)
+        inputContainer.appendChild(fieldContainer)
     }
 
     //fields = 0
     squares = document.querySelectorAll(".field")
+    names = document.querySelectorAll(".label-name")
     
 }
 
@@ -156,7 +171,8 @@ function generateChart() {
 
         label.style.setProperty("background", color)
 
-        label.textContent = `${data[index]} -> ${Math.round(percent)}%`;
+        //label.textContent = `${data[index]} -> ${Math.round(percent)}%`;
+        label.textContent = `${names[index].value} ${Math.round(percent)}%`
 
         labels.appendChild(label)
         SVG.appendChild(slice)
