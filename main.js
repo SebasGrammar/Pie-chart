@@ -35,6 +35,8 @@ range.addEventListener("change", handleUpdate)
 
 let squares;
 let names;
+let duplicates = [];
+
 
 function reset() {
     inputContainer.textContent = ""
@@ -91,7 +93,7 @@ backgroundCircle.setAttribute("cy", cy)
 
 const radio = backgroundCircle.r.baseVal.value
 
-const sliceRadio = radio / 2 
+const sliceRadio = radio / 2
 
 const circumference = 2 * Math.PI * sliceRadio
 
@@ -121,11 +123,23 @@ function generateRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
+function createOverlap() {
+    let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+    overlapping.classList.add("top")
+    overlapping.setAttribute("fill", "#F5F5F5")
+    overlapping.setAttribute("r", 2)
+    overlapping.setAttribute("cx", cx)
+    overlapping.setAttribute("cy", cy)
+    SVG.appendChild(overlapping)
+    test = overlapping;
+
+}
+
 function conjugate(number, text, verb = "is") {
-    if (number > 1)  {
-      text += "s";
-      verb = "are"
-      }
+    if (number > 1) {
+        text += "s";
+        verb = "are"
+    }
 
     return `There ${verb} ${number} empty ${text}.`
 }
@@ -149,13 +163,19 @@ function generateChart() {
 
     // }
 
-    for (let index = 0; index < squares.length; index ++) {
+    for (let index = 0; index < squares.length; index++) {
         if (!squares[index].value || !names[index].value) {
             greenLight = false
             break
         } else {
             greenLight = true
         }
+    }
+
+    if (checkForDuplicates(names)) {
+        greenLight = false
+        modalMessage.textContent = "There can't be duplicate labels."
+        modal.style.display = "block"
     }
 
     if (greenLight) {
@@ -167,7 +187,7 @@ function generateChart() {
             data.push(Number(square.value))
         }
 
-        console.log(data)
+        // console.log(data)
 
         let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
         let percentages = data.map(number => number * circumference / value)
@@ -201,11 +221,11 @@ function generateChart() {
             //     this.style.background = color
             // }.bind(label))
 
-            label.addEventListener("mouseover", function() {
+            label.addEventListener("mouseover", function () {
                 this.setAttribute("stroke", "red")
             }.bind(slice))
 
-            label.addEventListener("mouseout", function() {
+            label.addEventListener("mouseout", function () {
                 this.setAttribute("stroke", color)
             }.bind(slice))
 
@@ -218,16 +238,17 @@ function generateChart() {
 
         })
 
-            let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-            overlapping.classList.add("top")
-            overlapping.setAttribute("fill", "#F5F5F5")
-            overlapping.setAttribute("r", 2)
-            overlapping.setAttribute("cx", cx)
-            overlapping.setAttribute("cy", cy)
-            SVG.appendChild(overlapping)
-            test = overlapping;
+        // let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+        // overlapping.classList.add("top")
+        // overlapping.setAttribute("fill", "#F5F5F5")
+        // overlapping.setAttribute("r", 2)
+        // overlapping.setAttribute("cx", cx)
+        // overlapping.setAttribute("cy", cy)
+        // SVG.appendChild(overlapping)
+        // test = overlapping;
+        createOverlap()
 
-            
+
 
     } else {
 
@@ -235,8 +256,8 @@ function generateChart() {
         let emptyLabels = 0;
         for (let square of squares) {
             if (!square.value) {
-                emptyFields ++
-                square.style["border-color"] = "red" 
+                emptyFields++
+                square.style["border-color"] = "red"
             } else {
                 square.style["border-color"] = "#d1d1d1"
             }
@@ -244,20 +265,34 @@ function generateChart() {
 
         for (let label of names) {
             if (!label.value) {
-                emptyLabels ++
+                emptyLabels++
                 label.style["border-color"] = "red"
             } else {
                 label.style["border-color"] = "#d1d1d1"
             }
         }
-     
+
+        // if (emptyFields && emptyLabels) {
+        //     modalMessage.textContent = "there are empty fields and labels"
+        // } else if (emptyFields) {
+        //     modalMessage.textContent = conjugate(emptyFields, "field")
+        // } else if (emptyLabels) {
+        //     modalMessage.textContent = conjugate(emptyLabels, "label") //"There are empty labels"
+        // }
+
+        // if (ckechForDuplicates(names)) {
+        //     modalMessage.textContent = "Every label should be unique."
+
+        // } else 
+        
         if (emptyFields && emptyLabels) {
-            modalMessage.textContent = "there are empty fields and labels"
+            modalMessage.textContent = "There are empty fields and labels."
         } else if (emptyFields) {
             modalMessage.textContent = conjugate(emptyFields, "field")
         } else if (emptyLabels) {
             modalMessage.textContent = conjugate(emptyLabels, "label") //"There are empty labels"
         }
+
 
         modal.style.display = "block"
     }
@@ -267,7 +302,7 @@ function generateChart() {
 
 
 function checked(overlap) {
-    console.log(this)
+    // console.log(this)
     //let overlap = document.querySelector(".top")
     if (this.checked) {
         overlap.style.display = "block"
@@ -277,10 +312,21 @@ function checked(overlap) {
 }
 
 //doughnut.addEventListener("click", checked)
-doughnut.addEventListener("click", function() {
-    console.log(this)
+doughnut.addEventListener("click", function () {
+    // console.log(this)
     checked.bind(this)(test)
 })
 
+
+function checkForDuplicates(arr) {
+    duplicates.length = 0
+    for (let item of arr) {
+        duplicates.push(item.value)
+    }
+
+    console.log(duplicates)
+
+    return new Set(duplicates).size !== duplicates.length
+}
 
 generateButton.addEventListener("click", generateChart)
