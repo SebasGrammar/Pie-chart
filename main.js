@@ -33,39 +33,38 @@ function handleUpdate(suffix = "") {
 
 range.addEventListener("change", handleUpdate)
 
-//const squares = document.querySelectorAll(".field");
 let squares;
 let names;
-let fields = 0;
+//let fields = 0;
+
+function reset() {
+    inputContainer.textContent = ""
+    labels.textContent = ""
+    SVG.textContent = ""
+}
 
 function createFields() {
-    inputContainer.innerHTML = ""
-    labels.innerHTML = ""
-    SVG.innerHTML = ""
 
+    reset()
 
     for (let i = 0; i < Number(slicesNumber.value); i++) {
-        //let field = document.createElement("div")
+
         let fieldContainer = document.createElement("div")
         fieldContainer.classList.add("field-container")
-
 
         let label = document.createElement("input")
         label.placeholder = "label name"
         label.classList.add("label-name")
 
-
         let field = document.createElement("input")
         field.placeholder = `field #${i + 1}`
         field.classList.add("field")
-
 
         fieldContainer.appendChild(label)
         fieldContainer.appendChild(field)
         inputContainer.appendChild(fieldContainer)
     }
 
-    //fields = 0
     squares = document.querySelectorAll(".field")
     names = document.querySelectorAll(".label-name")
 
@@ -74,16 +73,10 @@ function createFields() {
 add.addEventListener("click", createFields)
 slicesNumber.addEventListener("input", createFields)
 
-console.log(generateButton)
 let dimensions = 5
-//let size = "150px";
 
 SVG.setAttribute("height", dimensions)
 SVG.setAttribute("width", dimensions)
-
-
-//SVG.style.setProperty("width", size)
-//SVG.style.setProperty("height", size)
 
 const pieWidth = SVG.width.baseVal.value;
 const pieHeight = SVG.height.baseVal.value;
@@ -97,18 +90,13 @@ backgroundCircle.setAttribute("r", pieWidth / 2)
 backgroundCircle.setAttribute("cx", cx)
 backgroundCircle.setAttribute("cy", cy)
 
-const radio = backgroundCircle.r.baseVal.value // Reference circle's radio value.
+const radio = backgroundCircle.r.baseVal.value
 
-const sliceRadio = radio / 2 // radio for each slice
+const sliceRadio = radio / 2 
 
 const circumference = 2 * Math.PI * sliceRadio
 
-//let data = [234, 324, 884, 22, 134]
 let data = [];
-
-
-//let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
-//let percentages = data.map(number => number * circumference / value)
 
 let colors = ["#edf7fa", "#5f6caf", "#ffb677", "#ff8364", "#df8543"]
 
@@ -134,11 +122,19 @@ function generateRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
+function conjugate(number, text = "fields", verb = "are") {
+
+    if (number < 2)  {
+      text = "field";
+      verb = "is"
+      }
+
+    return `There ${verb} ${number} empty ${text}.`
+}
+
 let greenLight;
 
 function generateChart() {
-
-
 
     for (let square of squares) {
 
@@ -156,10 +152,9 @@ function generateChart() {
     if (greenLight) {
 
         data.length = 0
-        labels.innerHTML = ""
+        labels.textContent = ""
 
         for (let square of squares) {
-            //console.log(square.value)
             data.push(Number(square.value))
         }
 
@@ -197,8 +192,6 @@ function generateChart() {
 
         })
 
-        //if (doughnut.checked) {
-
             let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
             overlapping.classList.add("top")
             overlapping.setAttribute("fill", "#F5F5F5")
@@ -206,7 +199,6 @@ function generateChart() {
             overlapping.setAttribute("cx", cx)
             overlapping.setAttribute("cy", cy)
             SVG.appendChild(overlapping)
-        //}
 
     } else {
         let emptyFields = 0;
@@ -216,12 +208,12 @@ function generateChart() {
                 
             }
         }
-        //alert("There are empty fields")
-        //let verb;
-        emptyFields < 2 ? modalMessage.textContent = `There is ${emptyFields} empty field.` : modalMessage.textContent = `There are ${emptyFields} empty fields.`
-        //modalMessage.textContent = "There ${verb} ${}"
+     
+        modalMessage.textContent = conjugate(emptyFields)
         modal.style.display = "block"
     }
+
+    checked()
 }
 
 
@@ -237,14 +229,3 @@ function checked() {
 doughnut.addEventListener("click", checked)
 
 generateButton.addEventListener("click", generateChart)
-
-
-// let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-// overlapping.classList.add("top")
-// overlapping.setAttribute("fill", "#FFF")
-// overlapping.setAttribute("r", 2)
-// overlapping.setAttribute("cx", cx)
-// overlapping.setAttribute("cy", cy)
-// SVG.appendChild(overlapping)
-
-console.log(SVG)
