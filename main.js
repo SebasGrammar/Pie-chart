@@ -16,6 +16,10 @@ const modal = document.querySelector(".modal")
 const closeModal = document.querySelector(".close-modal")
 const modalMessage = document.querySelector(".modal-message")
 
+const doughnut = document.querySelector(".doughnut")
+
+console.log(doughnut.checked)
+
 function close() {
     this.style.display = "none"
 }
@@ -126,24 +130,8 @@ function setColor(index) {
 
 let degrees = -90;
 
-// percentages.forEach((percentage, index) => {
-
-//     const slice = document.createElementNS("http://www.w3.org/2000/svg", "circle");
-//     Object.keys(attributes).forEach(attribute => slice.setAttribute(attribute, attributes[attribute]))
-//     slice.style.setProperty("transform-origin", "50%")
-//     slice.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
-//     degrees -= data[index] / value * 360
-//     slice.setAttribute("stroke-dasharray", setDashArray(percentage))
-//     slice.setAttribute("stroke", setColor(index))
-//     SVG.appendChild(slice)
-
-// })
-
 function generateRandomColor() {
-
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
-    //return `#${Math.floor(Math.random()*16777215).toString(16)}`
-
 }
 
 let greenLight;
@@ -209,14 +197,17 @@ function generateChart() {
 
         })
 
+        //if (doughnut.checked) {
 
-        // let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-        // overlapping.classList.add("top")
-        // overlapping.setAttribute("fill", "#FFF")
-        // overlapping.setAttribute("r", 2)
-        // overlapping.setAttribute("cx", cx)
-        // overlapping.setAttribute("cy", cy)
-        // SVG.appendChild(overlapping)
+            let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+            overlapping.classList.add("top")
+            overlapping.setAttribute("fill", "#F5F5F5")
+            overlapping.setAttribute("r", 2)
+            overlapping.setAttribute("cx", cx)
+            overlapping.setAttribute("cy", cy)
+            SVG.appendChild(overlapping)
+        //}
+
     } else {
         let emptyFields = 0;
         for (let square of squares) {
@@ -232,6 +223,18 @@ function generateChart() {
         modal.style.display = "block"
     }
 }
+
+
+function checked() {
+    let overlap = document.querySelector(".top")
+    if (this.checked) {
+        overlap.style.display = "block"
+    } else {
+        overlap.style.display = "none"
+    }
+}
+
+doughnut.addEventListener("click", checked)
 
 generateButton.addEventListener("click", generateChart)
 

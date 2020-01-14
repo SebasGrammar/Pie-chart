@@ -1,7 +1,7 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
 
 :root {
-  --size: 500px;
+  --size: 400px;
 }
 
 * {
@@ -31,6 +31,7 @@ body {
   background: #F5F5F5;
   border: 1px solid #d1d1d1;
   position: relative;
+  padding: 10px;
 }
 
 h1 {
@@ -43,8 +44,10 @@ h1 {
   align-items: center;
 
   /* background: red; */
-  padding: 10px;
-  border-right: 1px solid #ECECEC;
+  padding: ;
+  /* border-right: 1px solid #CCCCCC; */
+  height: 500px;
+
 }
 
 .chart-display {
@@ -53,7 +56,8 @@ h1 {
   align-items: center;
  
   /* background: blue; */
-  padding: 10px;
+  padding: 10px 50px;
+  border-left: 1px solid #DDDDDD;
 }
 
 svg {
@@ -73,12 +77,15 @@ svg {
   display: flex;
   flex-direction: column;
   align-items: center;
+  height: 300px;
+  overflow-y: scroll;
 }
 
 .top {
   /* background: green; */
   width: 500px;
   height: 200px;
+  display: none;
 }
 
 
@@ -110,6 +117,7 @@ input:focus {
 
 .labels {
   display: flex;
+  margin-bottom: 10px;
 }
 
 .label {
