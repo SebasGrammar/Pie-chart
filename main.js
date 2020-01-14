@@ -18,7 +18,7 @@ const modalMessage = document.querySelector(".modal-message")
 
 const doughnut = document.querySelector(".doughnut")
 
-console.log(doughnut.checked)
+//console.log(doughnut.checked)
 
 function close() {
     this.style.display = "none"
@@ -121,10 +121,10 @@ function generateRandomColor() {
     return '#' + Math.floor(Math.random() * 16777215).toString(16);
 }
 
-function conjugate(number, text = "fields", verb = "are") {
-    if (number < 2)  {
-      text = "field";
-      verb = "is"
+function conjugate(number, text, verb = "is") {
+    if (number > 1)  {
+      text += "s";
+      verb = "are"
       }
 
     return `There ${verb} ${number} empty ${text}.`
@@ -136,17 +136,26 @@ let test;
 
 function generateChart() {
 
-    for (let square of squares) {
+    // for (let square of squares) {
 
-        if (!square.value) {
+    //     if (!square.value) {
+    //         greenLight = false
+    //         break
+
+    //     } else {
+
+    //         greenLight = true
+    //     }
+
+    // }
+
+    for (let index = 0; index < squares.length; index ++) {
+        if (!squares[index].value || !names[index].value) {
             greenLight = false
             break
-
         } else {
-
             greenLight = true
         }
-
     }
 
     if (greenLight) {
@@ -221,15 +230,35 @@ function generateChart() {
             
 
     } else {
+
         let emptyFields = 0;
+        let emptyLabels = 0;
         for (let square of squares) {
             if (!square.value) {
                 emptyFields ++
-                
+                square.style["border-color"] = "red" 
+            } else {
+                square.style["border-color"] = "#d1d1d1"
+            }
+        }
+
+        for (let label of names) {
+            if (!label.value) {
+                emptyLabels ++
+                label.style["border-color"] = "red"
+            } else {
+                label.style["border-color"] = "#d1d1d1"
             }
         }
      
-        modalMessage.textContent = conjugate(emptyFields)
+        if (emptyFields && emptyLabels) {
+            modalMessage.textContent = "there are empty fields and labels"
+        } else if (emptyFields) {
+            modalMessage.textContent = conjugate(emptyFields, "field")
+        } else if (emptyLabels) {
+            modalMessage.textContent = conjugate(emptyLabels, "label") //"There are empty labels"
+        }
+
         modal.style.display = "block"
     }
 
