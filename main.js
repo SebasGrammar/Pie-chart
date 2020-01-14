@@ -35,7 +35,6 @@ range.addEventListener("change", handleUpdate)
 
 let squares;
 let names;
-//let fields = 0;
 
 function reset() {
     inputContainer.textContent = ""
@@ -123,7 +122,6 @@ function generateRandomColor() {
 }
 
 function conjugate(number, text = "fields", verb = "are") {
-
     if (number < 2)  {
       text = "field";
       verb = "is"
@@ -184,11 +182,28 @@ function generateChart() {
 
             label.style.setProperty("background", color)
 
-            //label.textContent = `${data[index]} -> ${Math.round(percent)}%`;
+            // slice.addEventListener("mouseover", function() {
+            //     this.style.background = "#F2AE72"
+            // }.bind(label))
+
+            // slice.addEventListener("mouseout", function() {
+            //     this.style.background = color
+            // }.bind(label))
+
+            label.addEventListener("mouseover", function() {
+                this.setAttribute("stroke", "red")
+            }.bind(slice))
+
+            label.addEventListener("mouseout", function() {
+                this.setAttribute("stroke", color)
+            }.bind(slice))
+
+
             label.textContent = `${names[index].value} ${Math.round(percent)}%`
 
             labels.appendChild(label)
             SVG.appendChild(slice)
+
 
         })
 
@@ -199,6 +214,8 @@ function generateChart() {
             overlapping.setAttribute("cx", cx)
             overlapping.setAttribute("cy", cy)
             SVG.appendChild(overlapping)
+
+            
 
     } else {
         let emptyFields = 0;
