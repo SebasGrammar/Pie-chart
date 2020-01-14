@@ -132,6 +132,8 @@ function conjugate(number, text = "fields", verb = "are") {
 
 let greenLight;
 
+let test;
+
 function generateChart() {
 
     for (let square of squares) {
@@ -214,6 +216,7 @@ function generateChart() {
             overlapping.setAttribute("cx", cx)
             overlapping.setAttribute("cy", cy)
             SVG.appendChild(overlapping)
+            test = overlapping;
 
             
 
@@ -230,12 +233,13 @@ function generateChart() {
         modal.style.display = "block"
     }
 
-    checked()
+    checked.bind(doughnut)(test)
 }
 
 
-function checked() {
-    let overlap = document.querySelector(".top")
+function checked(overlap) {
+    console.log(this)
+    //let overlap = document.querySelector(".top")
     if (this.checked) {
         overlap.style.display = "block"
     } else {
@@ -243,6 +247,11 @@ function checked() {
     }
 }
 
-doughnut.addEventListener("click", checked)
+//doughnut.addEventListener("click", checked)
+doughnut.addEventListener("click", function() {
+    console.log(this)
+    checked.bind(this)(test)
+})
+
 
 generateButton.addEventListener("click", generateChart)
