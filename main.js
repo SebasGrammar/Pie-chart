@@ -18,8 +18,6 @@ const modalMessage = document.querySelector(".modal-message")
 
 const doughnut = document.querySelector(".doughnut")
 
-//console.log(doughnut.checked)
-
 function close() {
     this.style.display = "none"
 }
@@ -124,14 +122,14 @@ function generateRandomColor() {
 }
 
 function createOverlap() {
-    let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-    overlapping.classList.add("top")
-    overlapping.setAttribute("fill", "#F5F5F5")
-    overlapping.setAttribute("r", 2)
-    overlapping.setAttribute("cx", cx)
-    overlapping.setAttribute("cy", cy)
-    SVG.appendChild(overlapping)
-    test = overlapping;
+    let overlap = document.createElementNS("http://www.w3.org/2000/svg", "circle")
+    overlap.classList.add("top")
+    overlap.setAttribute("fill", "#F5F5F5")
+    overlap.setAttribute("r", 2)
+    overlap.setAttribute("cx", cx)
+    overlap.setAttribute("cy", cy)
+    SVG.appendChild(overlap)
+    test = overlap;
 
 }
 
@@ -149,19 +147,6 @@ let greenLight;
 let test;
 
 function generateChart() {
-
-    // for (let square of squares) {
-
-    //     if (!square.value) {
-    //         greenLight = false
-    //         break
-
-    //     } else {
-
-    //         greenLight = true
-    //     }
-
-    // }
 
     for (let index = 0; index < squares.length; index++) {
         if (!squares[index].value || !names[index].value) {
@@ -187,9 +172,7 @@ function generateChart() {
             data.push(Number(square.value))
         }
 
-        // console.log(data)
-
-        let value = data.reduce((total, currentValue) => total + currentValue) // TOTAL, addition of all numbers
+        let value = data.reduce((total, currentValue) => total + currentValue) 
         let percentages = data.map(number => number * circumference / value)
 
         percentages.forEach((percentage, index) => {
@@ -208,18 +191,9 @@ function generateChart() {
             slice.style.setProperty("transform", `rotate(${-data[index] / value * 360 + degrees}deg)`)
             degrees -= data[index] / value * 360
             slice.setAttribute("stroke-dasharray", setDashArray(percentage))
-            //slice.setAttribute("stroke", setColor(index))
             slice.setAttribute("stroke", color)
 
             label.style.setProperty("background", color)
-
-            // slice.addEventListener("mouseover", function() {
-            //     this.style.background = "#F2AE72"
-            // }.bind(label))
-
-            // slice.addEventListener("mouseout", function() {
-            //     this.style.background = color
-            // }.bind(label))
 
             label.addEventListener("mouseover", function () {
                 this.setAttribute("stroke", "red")
@@ -238,14 +212,7 @@ function generateChart() {
 
         })
 
-        // let overlapping = document.createElementNS("http://www.w3.org/2000/svg", "circle")
-        // overlapping.classList.add("top")
-        // overlapping.setAttribute("fill", "#F5F5F5")
-        // overlapping.setAttribute("r", 2)
-        // overlapping.setAttribute("cx", cx)
-        // overlapping.setAttribute("cy", cy)
-        // SVG.appendChild(overlapping)
-        // test = overlapping;
+
         createOverlap()
 
 
@@ -255,6 +222,9 @@ function generateChart() {
         let emptyFields = 0;
         let emptyLabels = 0;
         for (let square of squares) {
+            square.addEventListener("input", function() {
+                this.style["border-color"] = "#d1d1d1"
+            })
             if (!square.value) {
                 emptyFields++
                 square.style["border-color"] = "red"
@@ -264,6 +234,9 @@ function generateChart() {
         }
 
         for (let label of names) {
+            label.addEventListener("input", function() {
+                this.style["border-color"] = "#d1d1d1"
+            })
             if (!label.value) {
                 emptyLabels++
                 label.style["border-color"] = "red"
@@ -272,18 +245,6 @@ function generateChart() {
             }
         }
 
-        // if (emptyFields && emptyLabels) {
-        //     modalMessage.textContent = "there are empty fields and labels"
-        // } else if (emptyFields) {
-        //     modalMessage.textContent = conjugate(emptyFields, "field")
-        // } else if (emptyLabels) {
-        //     modalMessage.textContent = conjugate(emptyLabels, "label") //"There are empty labels"
-        // }
-
-        // if (ckechForDuplicates(names)) {
-        //     modalMessage.textContent = "Every label should be unique."
-
-        // } else 
         
         if (emptyFields && emptyLabels) {
             modalMessage.textContent = "There are empty fields and labels."
@@ -301,19 +262,16 @@ function generateChart() {
 }
 
 
-function checked(overlap) {
-    // console.log(this)
-    //let overlap = document.querySelector(".top")
+function checked(element) {
     if (this.checked) {
-        overlap.style.display = "block"
+        element.style.display = "block"
     } else {
-        overlap.style.display = "none"
+        element.style.display = "none"
     }
 }
 
-//doughnut.addEventListener("click", checked)
+
 doughnut.addEventListener("click", function () {
-    // console.log(this)
     checked.bind(this)(test)
 })
 
