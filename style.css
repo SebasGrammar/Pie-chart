@@ -134,7 +134,8 @@ svg {
 }
 
 .change-view {
-  display: flex;
+  /* display: flex; */
+  display: none;
   align-items: center;
   position: absolute;
   right: 0;

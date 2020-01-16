@@ -19,6 +19,7 @@ const modalMessage = document.querySelector(".modal-message")
 const doughnut = document.querySelector(".doughnut")
 
 const modes = document.querySelectorAll(".view")
+const changeView = document.querySelector(".change-view")
 
 // function changeMode(elements) {
 //     for (let element of elements) {
@@ -177,6 +178,8 @@ function generateChart() {
     }
 
     if (greenLight) {
+
+        changeView.style.display = "flex"
 
         data.length = 0
         labels.textContent = ""
