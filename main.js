@@ -19,6 +19,8 @@ const modalMessage = document.querySelector(".modal-message")
 const doughnut = document.querySelector(".doughnut")
 
 const modes = document.querySelectorAll(".view")
+const changeView = document.querySelector(".change-view")
+
 
 // function changeMode(elements) {
 //     for (let element of elements) {
@@ -29,6 +31,15 @@ const modes = document.querySelectorAll(".view")
 //         }
 //     }
 // }
+
+let choices = {
+    "none": "block",
+    "block": "none"
+}
+
+function change() {
+    this.style.display = choices[getComputedStyle(this).getPropertyValue("display")]
+}
 
 function close() {
     this.style.display = "none"
@@ -221,6 +232,10 @@ function generateChart() {
             labels.appendChild(label)
             SVG.appendChild(slice)
 
+            changeView.style.display = "flex"
+
+            
+
 
         })
 
@@ -230,6 +245,8 @@ function generateChart() {
 
 
     } else {
+
+        
 
         let emptyFields = 0;
         let emptyLabels = 0;
@@ -297,14 +314,6 @@ doughnut.addEventListener("click", function () {
 
 })
 
-let choices = {
-    "none": "block",
-    "block": "none"
-}
-
-function change() {
-    this.style.display = choices[getComputedStyle(this).getPropertyValue("display")]
-}
 
 for (let mode of modes) {
     doughnut.addEventListener("click", change.bind(mode))
