@@ -18,6 +18,18 @@ const modalMessage = document.querySelector(".modal-message")
 
 const doughnut = document.querySelector(".doughnut")
 
+const modes = document.querySelectorAll(".view")
+
+// function changeMode(elements) {
+//     for (let element of elements) {
+//         if (element.style.display == "none") {
+//             element.style.display = "block"
+//         } else {
+//             element.style.display = "none"
+//         }
+//     }
+// }
+
 function close() {
     this.style.display = "none"
 }
@@ -29,7 +41,7 @@ function handleUpdate(suffix = "") {
     document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
 }
 
-range.addEventListener("change", handleUpdate)
+range.addEventListener("input", handleUpdate)
 
 let squares;
 let names;
@@ -53,7 +65,7 @@ function createFields() {
 
         let label = document.createElement("input")
         label.placeholder = "label name"
-        label.classList.add("label-name")
+        label.classList.add("label-name", "text-input")
 
         let field = document.createElement("input")
         field.placeholder = `field #${i + 1}`
@@ -172,7 +184,7 @@ function generateChart() {
             data.push(Number(square.value))
         }
 
-        let value = data.reduce((total, currentValue) => total + currentValue) 
+        let value = data.reduce((total, currentValue) => total + currentValue)
         let percentages = data.map(number => number * circumference / value)
 
         percentages.forEach((percentage, index) => {
@@ -222,7 +234,7 @@ function generateChart() {
         let emptyFields = 0;
         let emptyLabels = 0;
         for (let square of squares) {
-            square.addEventListener("input", function() {
+            square.addEventListener("input", function () {
                 this.style["border-color"] = "#d1d1d1"
             })
             if (!square.value) {
@@ -234,7 +246,7 @@ function generateChart() {
         }
 
         for (let label of names) {
-            label.addEventListener("input", function() {
+            label.addEventListener("input", function () {
                 this.style["border-color"] = "#d1d1d1"
             })
             if (!label.value) {
@@ -245,7 +257,7 @@ function generateChart() {
             }
         }
 
-        
+
         if (emptyFields && emptyLabels) {
             modalMessage.textContent = "There are empty fields and labels."
         } else if (emptyFields) {
@@ -270,10 +282,34 @@ function checked(element) {
     }
 }
 
+// function changeMode(elements) {
+//     for (let element of elements) {
+//         if (element.style.display == "none") {
+//             element.style.display = "block"
+//         } else {
+//             element.style.display = "none"
+//         }
+//     }
+// }
 
 doughnut.addEventListener("click", function () {
     checked.bind(this)(test)
+
 })
+
+let choices = {
+    "none": "block",
+    "block": "none"
+}
+
+function change() {
+    this.style.display = choices[getComputedStyle(this).getPropertyValue("display")]
+}
+
+for (let mode of modes) {
+    doughnut.addEventListener("click", change.bind(mode))
+}
+
 
 
 function checkForDuplicates(arr) {
