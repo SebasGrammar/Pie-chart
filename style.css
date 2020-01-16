@@ -91,6 +91,7 @@ input {
   outline: none;
   padding: 5px;
   margin: 5px;
+  text-align: left !important;
 }
 
 input:focus {
@@ -120,10 +121,27 @@ input:focus {
   display: flex;
 }
 
-button {
+/* button {
   padding: 10px;
   border-radius: 3px;
   border: 1px solid gray;
+} */
+
+button {
+  display: inline-block;
+  padding: 0.7em 1em;
+  text-decoration: none;
+  border-radius: 3px;
+  font-weight: bold;
+  color: #FFF;
+  border: none !important;
+  background: #2583C5;
+  transition: .4s;
+  margin-top: 5px;
+}
+
+button:hover{
+  background: #0F5999
 }
 
 .add {
@@ -132,7 +150,7 @@ button {
 
 .modal {
   background: red;
-  padding: 5px 60px;
+  padding: 10px 60px;
   position: absolute;
   display: none;
   z-index: 2;
