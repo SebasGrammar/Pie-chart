@@ -10,6 +10,23 @@
   box-sizing: border-box;
 }
 
+/***/
+
+h2 {
+  background: red;
+
+}
+
+.wrapper {
+  padding: 20px 0;
+}
+
+.chart-display {
+  padding: 20px 0;
+}
+
+/***/
+
 body, html {
   height: 100%;
   width: 100%;
@@ -19,6 +36,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
+  background: #E1E0DE;
 }
 
 .app {
@@ -30,13 +48,9 @@ body {
   background: #F5F5F5;
   border: 1px solid #d1d1d1;
   position: relative;
-  padding: 10px;
+  /* padding: 10px; */
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-}
-
-h1 {
-
 }
 
 .wrapper {
@@ -45,22 +59,7 @@ h1 {
   align-items: center;
   padding: ;
   height: 500px;
-}
-
-.chart-display {
-  width: 500px;
-  height: 500px;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 10px 50px;
-  border-left: 1px solid #DDDDDD;
-  position: relative;
-}
-
-svg {
-  height: var(--size);
-  width: var(--size);  
+  background: orange;
 }
 
 .input-container {
@@ -73,14 +72,9 @@ svg {
   overflow-y: auto;
 }
 
-.top {
-  width: 500px;
-  height: 200px;
-  display: none;
-}
-
-input {
-  background: #fff;
+.test {
+  /* background: #fff; */
+  background: #FFF;
   color: #000;
   border-radius: 4px;
   border: 1px solid #d1d1d1;
@@ -94,7 +88,7 @@ input {
   text-align: left !important;
 }
 
-input:focus {
+.test:focus {
   border: 1px solid green !important;
 }
 
@@ -104,6 +98,51 @@ input:focus {
   margin: 5px;
   text-align: center;
 }
+
+.field-container {
+  display: flex;
+}
+
+/***/
+
+.chart-display {
+  width: 500px;
+  height: 500px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  /* padding: 10px 50px; */
+  border-left: 1px solid #DDDDDD;
+  position: relative;
+  background: green;
+}
+
+svg {
+  height: var(--size);
+  width: var(--size);
+  background: yellow;
+  
+}
+
+.resize-section {
+  background: ;
+  width: ;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+}
+
+.change-view {
+  display: flex;
+  align-items: center;
+  justify-content: ;
+  background: red;
+  position: ;
+  left: 0;
+  margin-bottom: 5px;
+}
+
 
 .labels {
   display: flex;
@@ -117,8 +156,10 @@ input:focus {
   border-radius: 3px;
 }
 
-.field-container {
-  display: flex;
+.top {
+  width: 500px;
+  height: 200px;
+  display: none;
 }
 
 /* button {
@@ -196,40 +237,13 @@ input[type="range"] {
   top: 5px;
 }
 
-.resize-section {
-  background: ;
-  width: ;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
-}
-
-.change-view {
-  width: 40px;
-  position: relative;
-  background: orange;
-  display: flex;
-  align-items: center;
-  justify-content: ;
-  text-align: right;
-  margin-bottom: 20px;
-}
-
 .view {
   width: 18px;
-  position: absolute;
-  left: 0;
+  
 }
 
 input[type="checkbox"] {
-  /* vertical-align: middle;
-  position: relative;
-  top: 1px;
-  left: -3px; */
-  position: absolute;
-  right: 0;
-  top: -11px;
+  
 }
 
 .full {

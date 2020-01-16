@@ -65,11 +65,11 @@ function createFields() {
 
         let label = document.createElement("input")
         label.placeholder = "label name"
-        label.classList.add("label-name", "text-input")
+        label.classList.add("label-name", "test")
 
         let field = document.createElement("input")
         field.placeholder = `field #${i + 1}`
-        field.classList.add("field")
+        field.classList.add("field", "test")
 
         fieldContainer.appendChild(label)
         fieldContainer.appendChild(field)
