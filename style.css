@@ -1,20 +1,12 @@
 @import url('https://fonts.googleapis.com/css?family=Open+Sans&display=swap');
-
 :root {
-  --size: 400px;
+  --size: 350px;
 }
 
 * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-}
-
-/***/
-
-h2 {
-  background: ;
-
 }
 
 .wrapper {
@@ -48,7 +40,6 @@ body {
   background: #F5F5F5;
   border: 1px solid #d1d1d1;
   position: relative;
-  /* padding: 10px; */
   border-bottom: 1px solid rgba(0, 0, 0, 0.2);
   box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
 }
@@ -57,14 +48,11 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  padding: ;
   height: 500px;
-  background: ;
 }
 
 .input-container {
   width: 500px;
-  height: ;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -73,7 +61,6 @@ body {
 }
 
 .testa {
-  /* background: #fff; */
   background: #FFF;
   color: #000;
   border-radius: 4px;
@@ -94,7 +81,6 @@ body {
 
 .field {
   width: 100px;
-  background: ;
   margin: 5px;
   text-align: center;
 }
@@ -107,21 +93,27 @@ body {
   margin-top: 15px;
 }
 
+.resize-section {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  background: ;
+  width: 173px;
+}
+
 input[type="range"] {
   border: none !important;
   box-shadow: none;
   margin-top: -2px;
   background: orange;
-  width: 150px;
+  width: ;
   margin: 0 auto;
 }
 
 .expand {
-  background: ;
-  margin-right: ;
   position: absolute;
-  left: -26px;
-  top: 5px;
+  left: 0;
 }
 
 /***/
@@ -132,43 +124,31 @@ input[type="range"] {
   display: flex;
   flex-direction: column;
   align-items: center;
-  /* padding: 10px 50px; */
   border-left: 1px solid #DDDDDD;
   position: relative;
-  background: ;
 }
 
 svg {
   height: var(--size);
   width: var(--size);
-  background: ;
-  
-}
-
-.resize-section {
-  background: ;
-  width: ;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: relative;
 }
 
 .change-view {
   display: flex;
   align-items: center;
-  justify-content: ;
-  background: ;
   position: absolute;
-  left: 0;
+  right: 0;
   bottom: 0;
   margin-bottom: 5px;
 }
 
-
 .labels {
   display: flex;
   margin-bottom: 10px;
+  position: absolute;
+  top: 0;
+  font-weight: 100;
+  font-size: 0.9em;
 }
 
 .label {
@@ -184,26 +164,19 @@ svg {
   display: none;
 }
 
-/* button {
-  padding: 10px;
-  border-radius: 3px;
-  border: 1px solid gray;
-} */
-
 button {
   display: inline-block;
-  padding: 0.7em 1em;
+  padding: 0.6em 0.5em;
   text-decoration: none;
   border-radius: 3px;
   font-weight: bold;
   color: #FFF;
   border: none !important;
   background: #2583C5;
-  transition: .4s;
   margin-top: 5px;
 }
 
-button:hover{
+button:hover {
   background: #0F5999
 }
 
@@ -212,7 +185,6 @@ button:hover{
 }
 
 .modal {
-  background: ;
   padding: 10px 60px;
   position: absolute;
   display: none;
@@ -227,29 +199,23 @@ button:hover{
   background-clip: padding-box;
 }
 
-.overlay {}
-
-.chart-mode {}
-
 .doughnut-label {
   display: inline-block;
   vertical-align: middle;
 }
 
-
 .view {
   width: 18px;
   margin-right: 5px;
-  
-}
-
-input[type="checkbox"] {
-  
 }
 
 .testing {
-  background:;
   position: relative;
+  height: 440px;
+  width: 420px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
 .full {
