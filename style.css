@@ -209,7 +209,8 @@ input[type="range"] {
 }
 
 .change-view {
-  width: 40px;
+  width: 100%;
+  height: 20%;
   position: absolute;
   background: orange;
   /* display: flex; */
@@ -218,8 +219,8 @@ input[type="range"] {
   text-align: right;
   margin-bottom: 20px;
 
-  left: 45px;
-  bottom: 40px;
+  left: 5px;
+  bottom: -30px;
 
   display: none;
   
@@ -247,4 +248,8 @@ input[type="checkbox"] {
 
 .not-full {
   display: none;
+}
+
+.back {
+  background: red;
 }
