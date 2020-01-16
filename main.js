@@ -37,6 +37,7 @@ function close() {
 closeModal.addEventListener("click", close.bind(modal))
 
 function handleUpdate(suffix = "") {
+
     suffix = this.dataset.sizing;
     document.documentElement.style.setProperty(`--${this.name}`, this.value + suffix)
 }
@@ -65,11 +66,11 @@ function createFields() {
 
         let label = document.createElement("input")
         label.placeholder = "label name"
-        label.classList.add("label-name", "test")
+        label.classList.add("label-name", "testa")
 
         let field = document.createElement("input")
         field.placeholder = `field #${i + 1}`
-        field.classList.add("field", "test")
+        field.classList.add("field", "testa")
 
         fieldContainer.appendChild(label)
         fieldContainer.appendChild(field)

@@ -13,7 +13,7 @@
 /***/
 
 h2 {
-  background: red;
+  background: ;
 
 }
 
@@ -59,7 +59,7 @@ body {
   align-items: center;
   padding: ;
   height: 500px;
-  background: orange;
+  background: ;
 }
 
 .input-container {
@@ -72,7 +72,7 @@ body {
   overflow-y: auto;
 }
 
-.test {
+.testa {
   /* background: #fff; */
   background: #FFF;
   color: #000;
@@ -88,7 +88,7 @@ body {
   text-align: left !important;
 }
 
-.test:focus {
+.testa:focus {
   border: 1px solid green !important;
 }
 
@@ -103,6 +103,27 @@ body {
   display: flex;
 }
 
+.dimensions {
+  margin-top: 15px;
+}
+
+input[type="range"] {
+  border: none !important;
+  box-shadow: none;
+  margin-top: -2px;
+  background: orange;
+  width: 150px;
+  margin: 0 auto;
+}
+
+.expand {
+  background: ;
+  margin-right: ;
+  position: absolute;
+  left: -26px;
+  top: 5px;
+}
+
 /***/
 
 .chart-display {
@@ -114,13 +135,13 @@ body {
   /* padding: 10px 50px; */
   border-left: 1px solid #DDDDDD;
   position: relative;
-  background: green;
+  background: ;
 }
 
 svg {
   height: var(--size);
   width: var(--size);
-  background: yellow;
+  background: ;
   
 }
 
@@ -137,9 +158,10 @@ svg {
   display: flex;
   align-items: center;
   justify-content: ;
-  background: red;
-  position: ;
+  background: ;
+  position: absolute;
   left: 0;
+  bottom: 0;
   margin-bottom: 5px;
 }
 
@@ -152,7 +174,7 @@ svg {
 .label {
   width: ;
   height: ;
-  margin: 0 5px;
+  margin-right: 3px;
   border-radius: 3px;
 }
 
@@ -190,7 +212,7 @@ button:hover{
 }
 
 .modal {
-  background: red;
+  background: ;
   padding: 10px 60px;
   position: absolute;
   display: none;
@@ -215,35 +237,19 @@ button:hover{
 }
 
 
-
-.dimensions {
-  margin-top: 15px;
-}
-
-input[type="range"] {
-  border: none !important;
-  box-shadow: none;
-  margin-top: -2px;
-  background: orange;
-  width: 150px;
-  margin: 0 auto;
-}
-
-.expand {
-  background: ;
-  margin-right: ;
-  position: absolute;
-  left: -26px;
-  top: 5px;
-}
-
 .view {
   width: 18px;
+  margin-right: 5px;
   
 }
 
 input[type="checkbox"] {
   
+}
+
+.testing {
+  background:;
+  position: relative;
 }
 
 .full {
